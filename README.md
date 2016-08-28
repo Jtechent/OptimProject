@@ -16,7 +16,7 @@ Download according to instructions found [here](https://ngrok.com/download). Mak
 
 
 1. Open a terminal.
-2. Navigate to project directory.
+2. Navigate to project directory/dist.
 3. Enter the command ` python -m SimpleHTTPServer`. The command will print a message of the form `Serving HTTP on 0.0.0.0 port [some port number]`. The project can be viewed in a web browser by navigating to http://0.0.0.0:port_number/index.min.html.
 4. If you wish to be able to access the project over the web:
     1. Repeat steps one and two.
@@ -40,3 +40,20 @@ I used gulp to minify the files to be sent to the client and optimize the images
 
 ### Misc.
 I used Imagemagick mogrify and convert commands to reduce the image quality on uselessly large image files, as well as change their dimensions.
+
+## Build Tools
+___
+
+### Downloading
+Download build tools by navigating to the project directory in a terminal and typing `npm install` or `sudo npm install` depending on your system.
+
+### Gulp tasks
+
+#### Default
+The default task for this project minifies the HTML and images in src and places them in dist and dist/img respectively.
+
+#### uglify
+The uglify task minifies js files in src and puts those processed files in dist/js.
+
+#### cleancss
+The cleancss task minifies css files in src and puts those processed files in dist/css.
