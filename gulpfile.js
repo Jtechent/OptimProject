@@ -41,7 +41,6 @@ gulp.task('minhtml', function() {
       minifyJS: true
     }))
     .pipe(gulp.dest('dist'))
-    //might be really wrong with the '.' thing
 });
 
 // ///////////////////////////////
