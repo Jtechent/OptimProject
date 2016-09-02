@@ -237,6 +237,27 @@
         };
       }
 
+      function loadImages(URIs) {
+        //preload images
+        //this is probably a bad way of doing this but I don't know if I the function will have to wait to return
+        //until the image has been recieved from the server. I assume not but hey, rather be safe than sorry.
+        var index = 0;
+        //image setup function
+        function imageGen() {
+          //save current index state as index will be potentially before use
+          var i = index;
+          var nImage = new Image();
+          //in there is still more URIs load: load them after this one
+          if (URIs[index + 1] !== undefined){
+            index++;
+            //this is annoying
+            nImage.onload = imageGen;
+          }
+          nImage.src = 'img/' + URIs[i];
+        }
+        imageGen();
+      }
+
       function wireLinks() {
         var links = Array.prototype.slice.apply(document.querySelectorAll('a'));
         links.forEach(function(elem) {
@@ -250,8 +271,10 @@
       //setup handler
       theJax.onreadystatechange = function() {
         if (theJax.readyState == 4 && theJax.status == 200) {
+          //parse json, setup links to display appropriate data on click, preload images
           JaSON = JSON.parse(theJax.responseText);
           wireLinks();
+          loadImages(JaSON.images);
         }
       };
 
